@@ -1,4 +1,4 @@
-package org.miage.kirbach.BankService.boundary;
+package org.miage.kirbach.BankService.Loan.boundary;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;

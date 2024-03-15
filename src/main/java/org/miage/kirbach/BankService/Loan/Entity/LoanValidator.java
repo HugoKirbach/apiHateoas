@@ -1,4 +1,4 @@
-package org.miage.kirbach.BankService.Entity;
+package org.miage.kirbach.BankService.Loan.Entity;
 
 import java.util.Set;
 import org.springframework.stereotype.Service;
@@ -8,16 +8,16 @@ import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.Validator;
 
 @Service
-public class DemandeCreditValidator {
+public class LoanValidator {
 
     private final Validator validator;
 
-    DemandeCreditValidator(Validator validator) {
+    LoanValidator(Validator validator) {
         this.validator = validator;
     }
 
-    public void validate(DemandeCreditInput demandeCredit) {
-        Set<ConstraintViolation<DemandeCreditInput>> violations = validator.validate(demandeCredit);
+    public void validate(LoanInput loan) {
+        Set<ConstraintViolation<LoanInput>> violations = validator.validate(loan);
 
         if (!violations.isEmpty()) {
             throw new ConstraintViolationException(violations);

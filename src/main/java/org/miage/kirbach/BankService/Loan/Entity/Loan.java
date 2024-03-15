@@ -1,4 +1,4 @@
-package org.miage.kirbach.BankService.Entity;
+package org.miage.kirbach.BankService.Loan.Entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -14,20 +14,20 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DemandeCredit implements java.io.Serializable{
+public class Loan implements java.io.Serializable{
 
     @Id
     private String id;
 
     private String etat; //faire enum avec les 5 états possibles
 
-    private String nom;
-    private String prenom;
-    private String adresse;
-    private String dateNaissance;
-    private String emploiActuel;
-    private Long revenuTroisDernieresAnnees;
-    private Long montantCredit;
-    private Integer dureeCredit;
+    private String firstName;
+    private String lastName;
+    private String adress;
+    private String birthDate;
+    private String currentJob;
+    private Long incomeLastThreeYears;
+    private Long loanAmount;
+    private Integer loanDuration;
     
 }
