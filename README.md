@@ -84,7 +84,7 @@ Si certaines certaines routes essentielles vous semblent manquantes, n'hésitez 
 
 `PUT /credits/{id}`
 
-![PutLoan](./imagesReadMe/PutLoan.png)
+![PutLoan](./imagesReadMe/PutLoanEdit.png)
 
 `PUT /credits/{id}/study`
 
@@ -98,13 +98,14 @@ Cas où tout est correct :
 
 Cas où la demande n'est pas en état d'étude :
 
-![PutLoanValidateKOEtat](./imagesReadMe/PutLoanValidateServiceKO.png)
+![PutLoanValidateKOEtat](./imagesReadMe/PutLoanValidateKO.png)
 
 Cas où la demande est incorrecte avec les elements envoyés :
 
 ![PutLoanValidateServiceKOId](./imagesReadMe/PutLoanValidateKOClient.png)
 
 `GET /finances/check`
+
 Version où tout est correct :
 
 ![GetFinanceOK](./imagesReadMe/GetFinanceOK.png)
@@ -115,7 +116,7 @@ Version où le revenu déclaré ne correspond pas :
 
 Version où la personne n'existe pas en base :
 
-![GetFinanceKOutilisateur](./imagesReadMe/GetFinanceKOutilisateur.png)
+![GetFinanceKOutilisateur](./imagesReadMe/GetFinanceKOUtilisateur.png)
 
 ### Circuit breaker sur Finance-service
 ![CircuitBreaker](./imagesReadMe/PutLoanValidateServiceKO.png)
