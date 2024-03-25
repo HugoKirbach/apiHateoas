@@ -10,6 +10,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class LoanInput {
 
+    
+    private String id;
+    private ELoanStates status;
+
     @NotNull
     @NotBlank
     private String firstName;

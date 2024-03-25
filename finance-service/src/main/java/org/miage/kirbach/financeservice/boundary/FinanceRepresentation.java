@@ -61,9 +61,9 @@ public class FinanceRepresentation {
             if (finance.getIncomelastthreeyears().equals(salary.toString())) {
                 return ResponseEntity.ok(EGouvStates.OK.toString());
             }
+            return ResponseEntity.badRequest().body("Cette personne existe en base mais pas le bon salaire - "+EGouvStates.KO.toString());
         }
-        LOGGER.info("finance n'existe pas ou existe mais pas le bon salaire - "+EGouvStates.KO.toString());
-        return ResponseEntity.ok(EGouvStates.KO.toString());
+        return ResponseEntity.badRequest().body("Cette personne n'existe pas en base - "+EGouvStates.KO.toString());
     }
 
     @PostMapping
