@@ -58,12 +58,15 @@ public class FinanceRepresentation {
         if (financeExists) {
             LOGGER.info("finance existe");
             Finance finance = financeResource.findByFirstnameAndLastname(nom, prenom);
-            if (finance.getIncomelastthreeyears().equals(salary.toString())) {
+            //deux manières de comparer les salaires, une fois en Long et une fois en String car cela ne fonctionnait pas tout le temps avec un Long, va savoir pourquoi
+            if (finance.getIncomelastthreeyears() == salary) {
                 return ResponseEntity.ok(EGouvStates.OK.toString());
             }
-            return ResponseEntity.badRequest().body("Cette personne existe en base mais pas le bon salaire - "+EGouvStates.KO.toString());
+            if (finance.getIncomelastthreeyears().toString().equals(salary.toString())) {
+                return ResponseEntity.ok(EGouvStates.OK.toString());
+            }
         }
-        return ResponseEntity.badRequest().body("Cette personne n'existe pas en base - "+EGouvStates.KO.toString());
+        return ResponseEntity.badRequest().body(EGouvStates.KO.toString());
     }
 
     @PostMapping

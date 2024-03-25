@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.Date;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.logging.Logger;
 
 import javax.swing.text.html.parser.Entity;
 
@@ -18,9 +19,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
-
-
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
@@ -39,6 +39,8 @@ public class LoanRepresentation {
 
     private final LoanResource loanResource;
     private LoanValidator loanValidator;
+
+    private final static Logger LOGGER = Logger.getLogger(LoanRepresentation.class.getName());
 
     private final static String BASEURLFINANCECHECK = "http://localhost:8083/finances/check";
 
@@ -189,13 +191,6 @@ public class LoanRepresentation {
             Long incomeLastThreeYears = loanEntity.get().getIncomelastthreeyears();
             String result = restTemplate.getForObject(BASEURLFINANCECHECK + "?firstname=" + firstname + "&lastname=" + lastname + "&incomeLastThreeYears=" + incomeLastThreeYears, String.class);
 
-            if (result.contains("KO")) {
-                if (!result.contains("n'existe")) {
-                    return ResponseEntity.badRequest().body("Le service de finance publique a indiqué un mauvais rensignement du salaire pour le client.");
-                }
-                return ResponseEntity.badRequest().body("Le service de finance publique n'a pas trouvé le client.");
-            }
-
             Loan loanToUpdate = loanEntity.get();
             loanToUpdate.setState(ELoanStates.Validation);
             loanToUpdate.setLastupdate(new Date().toString());
@@ -206,8 +201,11 @@ public class LoanRepresentation {
             return ResponseEntity.ok(loanModel);
         }
         return ResponseEntity.badRequest().body("Aucune demande de crédit trouvé pour cet ID");
-        } catch (Exception e) {
-        return ResponseEntity.badRequest().body("Le service de finance publique est hors ligne");
+        } catch (HttpClientErrorException.BadRequest e) {
+            return ResponseEntity.badRequest().body("Le service de finance publique retourne KO pour le client.");
+        }
+        catch (Exception e) {
+            return ResponseEntity.badRequest().body("Le service de finance publique est hors ligne");
         }
     }
 

@@ -54,3 +54,17 @@ Consul tape sur le port 8500 par défaut dans ma config, il est donc nécessaire
 
 ## Stockage des données
 Les données des demandes de prêt sont stockées dans une base de données H2. La base de données est configurée pour être stockée en mémoire, ce qui signifie que les données sont perdues à chaque redémarrage du service. Cela est fait pour des raisons de démonstration, mais il est possible de configurer la base de données pour stocker les données de manière persistante. Les scripts SQL pour peupler la base au démaraage sont dans les dossiers `src/main/resources` des deux services et s'executent automatiquement au démarrage de ces derniers.
+
+## Architecture de l'application
+Globalement, mon projet est composé de la manière suivante :
+
+![ArchitectureBase](./imagesReadMe/ArchitectureBase.png)
+
+Mes services, eux, sont composées de la manière suivante :
+![ArchitectureService](./imagesReadMe/ArchitectureBankEtendue.png)
+
+## Exemples d'utilisation/execution de mes routes
+### Routes
+
+
+### Circuit breaker

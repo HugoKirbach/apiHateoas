@@ -34,7 +34,7 @@ public class LoanModelAssembler implements RepresentationModelAssembler<Loan, En
                 break;
             case Étude:
                 loanModel.add(linkTo(methodOn(LoanRepresentation.class).validateLoan(loanEntity.getId())).withRel("validateLoan").withType(HttpMethod.PUT.toString()).withName("Valider la demande"));
-
+                break;
             case Validation:
                 loanModel.add(linkTo(methodOn(LoanRepresentation.class).acceptLoan(loanEntity.getId())).withRel("acceptLoan").withType(HttpMethod.PUT.toString()).withName("Accepter la demande"));
                 loanModel.add(linkTo(methodOn(LoanRepresentation.class).rejectLoan(loanEntity.getId())).withRel("rejectLoan").withType(HttpMethod.PUT.toString()).withName("Rejeter la demande"));
