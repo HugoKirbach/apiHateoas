@@ -62,9 +62,60 @@ Globalement, mon projet est composé de la manière suivante :
 
 Mes services, eux, sont composées de la manière suivante :
 ![ArchitectureService](./imagesReadMe/ArchitectureBankEtendue.png)
+Il en est de même pour le service Finance mais puisqu'il est moins complexe, je n'ai pas jugé utile de le représenter.
 
 ## Exemples d'utilisation/execution de mes routes
 ### Routes
+Je vais maintenant vous montrer des exemples d'utilisation de mes routes pour les deux services, sur les routes les plus interessantes selon moi.
+Dans la suite de cette documentation, je vais utiliser l'outil Postman pour effectuer les requêtes HTTP.
+Si certaines certaines routes essentielles vous semblent manquantes, n'hésitez pas à jeter un coups d'oeil dans le dossier imagesReadMe, il se pourrait que j'ai oublié d'en citer.
 
+`GET /credits/{id}`
 
-### Circuit breaker
+![GetCreditId](./imagesReadMe/GetCreditId.png)
+
+`GET /credits/check`
+
+![GetCreditCheck](./imagesReadMe/GetCreditCheck.png)
+
+`POST /credits`
+
+![PostCredit](./imagesReadMe/PostCredit.png)
+
+`PUT /credits/{id}`
+
+![PutLoan](./imagesReadMe/PutLoan.png)
+
+`PUT /credits/{id}/study`
+
+![PutStudy](./imagesReadMe/PutLoanStudy.png)
+
+`PUT /credits/{id}/validate`
+
+Cas où tout est correct :
+
+![PutValidate](./imagesReadMe/PutLoanValidate.png)
+
+Cas où la demande n'est pas en état d'étude :
+
+![PutLoanValidateKOEtat](./imagesReadMe/PutLoanValidateServiceKO.png)
+
+Cas où la demande est incorrecte avec les elements envoyés :
+
+![PutLoanValidateServiceKOId](./imagesReadMe/PutLoanValidateKOClient.png)
+
+`GET /finances/check`
+Version où tout est correct :
+
+![GetFinanceOK](./imagesReadMe/GetFinanceOK.png)
+
+Version où le revenu déclaré ne correspond pas :
+
+![GetFinanceKOSalaire](./imagesReadMe/GetFinanceKOSalaire.png)
+
+Version où la personne n'existe pas en base :
+
+![GetFinanceKOutilisateur](./imagesReadMe/GetFinanceKOutilisateur.png)
+
+### Circuit breaker sur Finance-service
+![CircuitBreaker](./imagesReadMe/PutLoanValidateServiceKO.png)
